@@ -1,0 +1,4 @@
+prolang-prolog
+==============
+
+Prolog homework
