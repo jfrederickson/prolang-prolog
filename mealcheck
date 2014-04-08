@@ -13,11 +13,11 @@ add_pairs([I1, I2, I3, I4, I5, I6], [I7, I8, I9, I10, I11, I12], [O1, O2, O3, O4
   O6 is I6 + I12.
   
 check([_, E2, E3, E4, E5, E6], Len) :-
-  E2 >= Len - 3,
-  E3 >= Len - 3,
+  E2 =< Len - 3,
+  E3 =< Len - 3,
   E4 >= 3,
-  E5 >= Len - 3,
-  E6 >= Len - 3.
+  E5 =< Len - 3,
+  E6 =< Len - 3.
 
 % add_all(+L, -NewL)
 % Adds all lists in L together.
