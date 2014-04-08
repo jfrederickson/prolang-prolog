@@ -2,16 +2,6 @@
 % Programming Languages - Spring 2014
 % Meal checker program - Prolog version
 % Authors: Jonathan Frederickson, Dakota Pollitt, Alex Ciaramella
-
-% replace_first(+L, -NewL)
-% Replaces the first element in list L with 1
-% I don't think we need this, Prolog has a length() function
-% replace_first([_|T], NewL) :- append([1], T, NewL).
-
-%TestList = [[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6]].
-
-add([X|Y], Out) :-
-  add_pairs(X, [Y|_], Out).
   
 add_pairs(X, [], X).
 add_pairs([I1, I2, I3, I4, I5, I6], [I7, I8, I9, I10, I11, I12], [O1, O2, O3, O4, O5, O6]) :-
@@ -22,13 +12,12 @@ add_pairs([I1, I2, I3, I4, I5, I6], [I7, I8, I9, I10, I11, I12], [O1, O2, O3, O4
   O5 is I5 + I11,
   O6 is I6 + I12.
   
-check([E1, E2, E3, E4, E5, E6]) :-
-  E1 >= 3,
-  E2 >= 3,
-  E3 >= 3,
+check([_, E2, E3, E4, E5, E6], Len) :-
+  E2 >= Len - 3,
+  E3 >= Len - 3,
   E4 >= 3,
-  E5 >= 3,
-  E6 >= 3.
+  E5 >= Len - 3,
+  E6 >= Len - 3.
 
 % add_all(+L, -NewL)
 % Adds all lists in L together.
@@ -43,5 +32,6 @@ add_all([X, Y|T], Out) :-
 % [ [MealNum, Meat, Veg, Org, Dessert, Dairy], [...] ]
 % Each list within the list represents the characteristics of a given meal.
 satisfactory_meal(L) :-
-  add(L, Output), 
-  check(Output).
+  add_all(L, Output),
+  length(L, Len),
+  check(Output, Len).
