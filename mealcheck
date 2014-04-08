@@ -2,16 +2,20 @@
 % Programming Languages - Spring 2014
 % Meal checker program - Prolog version
 % Authors: Jonathan Frederickson, Dakota Pollitt, Alex Ciaramella
-  
+
+% add_pairs(+List1, +List2, -OutList)
+% Add_pairs adds two lists together and stores them in the OuyList  
 add_pairs(X, [], X).
 add_pairs([I1, I2, I3, I4, I5, I6], [I7, I8, I9, I10, I11, I12], [O1, O2, O3, O4, O5, O6]) :-
   O1 is I1 + I7,
   O2 is I2 + I8,
   O3 is I3 + I9,
-  O4 is I4 + I10, %This should be changed to accommodate the needed 0's
+  O4 is I4 + I10,
   O5 is I5 + I11,
   O6 is I6 + I12.
   
+% check(+Output)
+% Check checks the final count to ensure meal satisfaction
 check([_, E2, E3, E4, E5, E6], Len) :-
   E2 =< Len - 3,
   E3 =< Len - 3,
