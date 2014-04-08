@@ -8,8 +8,10 @@
 % I don't think we need this, Prolog has a length() function
 % replace_first([_|T], NewL) :- append([1], T, NewL).
 
-add([X|Y], O) :-
-  add_pairs(X, [Y|_], O).
+%TestList = [[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6]].
+
+add([X|Y], Out) :-
+  add_pairs(X, [Y|_], Out).
   
 add_pairs(X, [], X).
 add_pairs([I1, I2, I3, I4, I5, I6], [I7, I8, I9, I10, I11, I12], [O1, O2, O3, O4, O5, O6]) :-
@@ -31,7 +33,10 @@ check([E1, E2, E3, E4, E5, E6]) :-
 % add_all(+L, -NewL)
 % Adds all lists in L together.
 add_all([L|[]], L).
-add_all([L|T], NewL).
+add_all([X, Y|T], Out) :-
+  add_pairs(X, Y, Sum),
+  append([Sum], T, TOut),
+  add_all(TOut, Out).
   
 % satisfactory_meal(+L)
 % Meal L is satisfactory, where L is a list of lists in this format:
