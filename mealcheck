@@ -8,16 +8,30 @@
 % I don't think we need this, Prolog has a length() function
 % replace_first([_|T], NewL) :- append([1], T, NewL).
 
+add([X|Y], O) :-
+  add_pairs(X, [Y|_], O).
+  
+add_pairs(X, [], X).
 add_pairs([I1, I2, I3, I4, I5, I6], [I7, I8, I9, I10, I11, I12], [O1, O2, O3, O4, O5, O6]) :-
   O1 is I1 + I7,
   O2 is I2 + I8,
   O3 is I3 + I9,
-  O4 is I4 + I10,
+  O4 is I4 + I10, %This should be changed to accommodate the needed 0's
   O5 is I5 + I11,
   O6 is I6 + I12.
+  
+check([E1, E2, E3, E4, E5, E6]) :-
+  E1 >= 3,
+  E2 >= 3,
+  E3 >= 3,
+  E4 >= 3,
+  E5 >= 3,
+  E6 >= 3.
 
 % satisfactory_meal(+L)
 % Meal L is satisfactory, where L is a list of lists in this format:
 % [ [MealNum, Meat, Veg, Org, Dessert, Dairy], [...] ]
 % Each list within the list represents the characteristics of a given meal.
-satisfactory_meal(L).
+satisfactory_meal(L) :-
+  add(L, Output), 
+  check(Output).
