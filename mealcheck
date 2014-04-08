@@ -16,6 +16,11 @@ add_pairs([I1, I2, I3, I4, I5, I6], [I7, I8, I9, I10, I11, I12], [O1, O2, O3, O4
   O5 is I5 + I11,
   O6 is I6 + I12.
 
+% add_all(+L, -NewL)
+% Adds all lists in L together.
+add_all([L|[]], L).
+add_all([L|T], NewL).
+  
 % satisfactory_meal(+L)
 % Meal L is satisfactory, where L is a list of lists in this format:
 % [ [MealNum, Meat, Veg, Org, Dessert, Dairy], [...] ]
